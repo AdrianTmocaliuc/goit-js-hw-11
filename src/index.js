@@ -90,7 +90,6 @@ refs.searchForm.addEventListener('submit', async e => {
 
   // console.log(hits);
 });
-// const perPage = 40;
 refs.lodMoreBtn.addEventListener('click', async () => {
   page++;
   const { hits, totalHits } = await axLink(refs.textInput.value, page);
