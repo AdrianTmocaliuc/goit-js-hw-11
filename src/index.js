@@ -81,6 +81,7 @@ refs.searchForm.addEventListener('submit', async e => {
   if (hits.length > 0) {
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
   } else {
+    refs.gallerycards.innerHTML = '';
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
     );
