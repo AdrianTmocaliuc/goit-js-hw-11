@@ -1,0 +1,5 @@
+{
+    "baseURL": "https://pixabay.com/api/",
+    "keyAPI": "key=23808150-51820317ad7670f55f1a98c8b",
+    "descriptionAPI": "&image_type=photo&orientation=horizontal&safesearch=true&per_page=40"
+}
