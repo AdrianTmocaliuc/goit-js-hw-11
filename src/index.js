@@ -19,11 +19,14 @@ const refs = {
 
 refs.lodMoreBtn.classList.toggle('hide');
 
-// style = 'background-image: url(${webformatURL})';
-// <img src="${webformatURL}"
-// alt="${tags}" loading="lazy" />
-const rander = arrcards => {
-  const markUp = arrcards
+{
+  // <a class="gallery__link"  href=${largeImageURL}>
+  //         <img class='large-image' src="${webformatURL}'
+  //         alt="${tags}" loading="lazy" />
+  //         </a>
+}
+const rander = arrCards => {
+  const markUp = arrCards
     .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
       let listOFCards = `
     <div class="photo-card">
@@ -36,19 +39,19 @@ const rander = arrcards => {
         </div>
         <div class="info">
             <p class="info-item">
-                <b>Likes</b>
+                <b>Likes:</b>
                 ${likes}
             </p>
             <p class="info-item">
-                <b>Views</b>
+                <b>Views:</b>
                 ${views}
             </p>
             <p class="info-item">
-                <b>Comments</b>
+                <b>Comments:</b>
                 ${comments}
             </p>
             <p class="info-item">
-                <b>Downloads</b>
+                <b>Downloads:</b>
                 ${downloads}
             </p>
         </div>
@@ -63,8 +66,7 @@ const rander = arrcards => {
   lightbox.refresh();
 };
 const lightbox = new SimpleLightbox('.gallery a', {
-  // captionsData: 'alt',
-  // captionDelay: 1000,
+  captionDelay: 1000,
 });
 
 let page = 1;
@@ -78,6 +80,7 @@ refs.searchForm.addEventListener('submit', async e => {
   rander(hits, totalHits);
 
   if (hits.length < totalHits && hits.length >= 0) refs.lodMoreBtn.classList.toggle('hide');
+
   if (hits.length > 0) {
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
   } else {
@@ -85,10 +88,8 @@ refs.searchForm.addEventListener('submit', async e => {
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
     );
+    refs.lodMoreBtn.classList.toggle('hide');
   }
-  // console.log(totalHits);
-
-  // console.log(hits);
 });
 refs.lodMoreBtn.addEventListener('click', async () => {
   page++;
@@ -111,3 +112,13 @@ refs.lodMoreBtn.addEventListener('click', async () => {
 // });
 
 // console.log(cardHeight);
+
+const slowScroll = () => {
+  const { height: cardHeight } = document.querySelector('.gallery');
+  console.log(document.querySelector('.gallery').offsetHeight);
+  window.scrollBy({
+    top: document.querySelector('.gallery').offsetHeight,
+    behavior: 'smooth',
+  });
+};
+slowScroll(2);
